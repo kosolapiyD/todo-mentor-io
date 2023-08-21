@@ -1,0 +1,21 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin    : 0;
+  padding   : 0;
+  box-sizing: border-box;
+}
+
+input {
+  background   : none;
+  border       : none;
+  outline      : none;
+  /* border    : 1px solid #d41b87; */
+}
+
+input:focus {
+  background   : none;
+  /* border    : 1px solid #d41b87; */
+}

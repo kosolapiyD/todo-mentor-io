@@ -1,0 +1,50 @@
+@use '../../styles/_colors.scss'as *;
+
+.list-footer {
+    display    : flex;
+    align-items: center;
+    height     : 50px;
+    font-weight: 600;
+
+    .items-left {
+        flex: 2;
+
+        span {
+            padding: 0 20px;
+        }
+    }
+
+    .filter-box {
+        flex           : 3;
+        display        : flex;
+        justify-content: space-evenly;
+
+        .filter {
+
+            &[data-active="true"] {
+                color: $BrightBlue;
+
+                span {
+                    cursor: default;
+                }
+            }
+
+            &[data-active="false"] {
+                span {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .clear-completed {
+        flex           : 2;
+        display        : flex;
+        justify-content: flex-end;
+
+        span {
+            padding: 0 20px;
+            cursor : pointer;
+        }
+    }
+}

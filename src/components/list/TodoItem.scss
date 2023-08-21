@@ -1,0 +1,66 @@
+@use '../../styles/_colors.scss'as *;
+
+.todo-item {
+    display    : flex;
+    align-items: center;
+    height     : 60px;
+
+    .todo-check {
+        flex        : 1;
+        margin-left : 15px;
+        margin-right: 10px;
+
+        input {
+            width             : 20px;
+            height            : 20px;
+            vertical-align    : middle;
+            -webkit-appearance: none;
+            background        : none;
+            outline           : 0;
+            margin            : 0;
+            border-radius     : 15px;
+            background-color  : none;
+            cursor            : pointer;
+
+            &:checked {
+                background: $CheckBackground;
+                border    : none;
+            }
+
+            &:checked::after {
+                content        : url('../../assets/icon-check.svg');
+                display        : flex;
+                justify-content: center;
+                padding-top    : 2px;
+            }
+
+            &:hover {
+                border: 1px solid #57ddff !important;
+            }
+        }
+    }
+
+    .todo-text {
+        flex          : 20;
+        font-size     : 18px;
+        letter-spacing: 1px;
+        font-weight   : 500;
+
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+
+
+    .todo-remove {
+        flex   : 1;
+        margin : 6px 5px 0px 15px;
+        opacity: 0.3;
+
+        &:hover {
+            opacity: 1;
+            cursor : pointer;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+@import './reset';
+
+.App {
+    min-height           : 100vh;
+    transition           : all 0.2s ease;
+    background-repeat    : no-repeat;
+    background-position-x: center;
+
+    .container {
+        max-width: 600px;
+        margin   : 0 auto;
+        padding  : 20px;
+    }
+}
