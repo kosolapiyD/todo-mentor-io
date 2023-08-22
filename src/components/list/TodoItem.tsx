@@ -1,9 +1,19 @@
 import { useContext } from 'react';
+import { DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
 import crossIconDark from '../../assets/icon-cross-dark.svg';
 import crossIconLight from '../../assets/icon-cross-light.svg';
 import { ThemeContext } from '../../context/ThemeContext';
-import { TodoItemProps } from '../../types/index';
 import './TodoItem.scss';
+
+type Props = {
+  id: number;
+  text: string;
+  completed: boolean;
+  toggleTodo?: (todoId: number) => void;
+  removeTodo?: (todoId: number) => void;
+  provided: DraggableProvided;
+  snapshot: DraggableStateSnapshot;
+};
 
 const TodoItem = ({
   id,
@@ -11,11 +21,28 @@ const TodoItem = ({
   completed,
   toggleTodo,
   removeTodo,
-}: TodoItemProps) => {
+  provided,
+  snapshot,
+}: Props) => {
   const { theme } = useContext(ThemeContext);
+  const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
+    background: isDragging
+      ? '#8555c3aa'
+      : theme === 'light-theme'
+      ? '#fafafa'
+      : '#25273c',
+    borderRadius: isDragging ? '3px' : null,
+    ...draggableStyle,
+  });
 
   return (
-    <div className='todo-item'>
+    <div
+      ref={provided.innerRef}
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
+      style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
+      className='todo-item'
+    >
       <div className='todo-check'>
         <input
           type='checkbox'
@@ -24,7 +51,11 @@ const TodoItem = ({
         />
       </div>
       <div className='todo-text'>
-        <span style={{ textDecoration: completed ? 'line-through' : 'none' }}>
+        <span
+          style={{
+            textDecoration: completed ? 'line-through' : 'none',
+          }}
+        >
           {text}
         </span>
       </div>

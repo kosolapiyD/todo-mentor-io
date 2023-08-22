@@ -1,6 +1,12 @@
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from 'react-beautiful-dnd';
 import { TodoItemProps } from '../../types/index';
 import './List.scss';
-import ListFooter from './ListFooter';
+import ListSummary from './ListSummary';
 import TodoItem from './TodoItem';
 
 type Props = {
@@ -9,6 +15,7 @@ type Props = {
   removeTodo: (todoId: number) => void;
   onFilterClick: (filter: string) => void;
   clearCompleted: () => void;
+  onDragEnd: (result: DropResult) => void;
   todosLength: number;
 };
 
@@ -18,25 +25,45 @@ const List = ({
   removeTodo,
   onFilterClick,
   clearCompleted,
+  onDragEnd,
   todosLength,
 }: Props) => {
-  const todoItems = data.map((item: TodoItemProps) => (
-    <TodoItem
-      toggleTodo={toggleTodo}
-      removeTodo={removeTodo}
-      key={item.id}
-      {...item}
-    />
-  ));
+  const todoItems = data.map((item, index) => {
+    return (
+      <Draggable key={item.id} draggableId={`${item.id}`} index={index}>
+        {(provided, snapshot) => (
+          <TodoItem
+            toggleTodo={toggleTodo}
+            removeTodo={removeTodo}
+            provided={provided}
+            snapshot={snapshot}
+            {...item}
+          />
+        )}
+      </Draggable>
+    );
+  });
 
   return (
-    <div className='todo-list'>
-      {todoItems}
-      <ListFooter
+    <div style={{ height: data.length * 61 + 50 }} className='todo-list'>
+      <ListSummary
         onFilterClick={onFilterClick}
         clearCompleted={clearCompleted}
         todosLength={todosLength}
       />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId='todo'>
+          {(provided) => (
+            <div
+              className='todo'
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {todoItems}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
     </div>
   );
 };

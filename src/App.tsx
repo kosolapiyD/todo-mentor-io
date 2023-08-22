@@ -4,6 +4,7 @@ import List from './components/list/List';
 import { ThemeContext } from './context/ThemeContext';
 import './styles/main.scss';
 import { TodoItemProps } from './types/index';
+import { DropResult } from 'react-beautiful-dnd';
 
 const data: TodoItemProps[] = [
   {
@@ -88,6 +89,17 @@ function App() {
 
   const filteredTodos = filterTodos(activeFilter);
 
+  const onDragEnd = (result: DropResult) => {
+    const { source, destination } = result;
+    if (!destination) return;
+
+    const items = Array.from(todos);
+    const [newOrder] = items.splice(source.index, 1);
+    items.splice(destination.index, 0, newOrder);
+
+    setTodos(items);
+  };
+
   return (
     <div className={`App ${theme}`}>
       <div className='container'>
@@ -100,8 +112,12 @@ function App() {
             setActiveFilter(filter);
           }}
           clearCompleted={clearCompleted}
+          onDragEnd={onDragEnd}
           todosLength={todos.length}
         />
+        <div className='list-footer'>
+          <span>Drag and drop to reorder list</span>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ListFooter.scss';
+import './ListSummary.scss';
 
 type Props = {
   onFilterClick: (filter: string) => void;
@@ -7,7 +7,7 @@ type Props = {
   todosLength: number;
 };
 
-const ListFooter = ({ onFilterClick, clearCompleted, todosLength }: Props) => {
+const ListSummary = ({ onFilterClick, clearCompleted, todosLength }: Props) => {
   const [activeFilter, setActiveFilter] = useState('all');
 
   const handleFilterClick = (ev: React.MouseEvent<HTMLElement>) => {
@@ -24,7 +24,7 @@ const ListFooter = ({ onFilterClick, clearCompleted, todosLength }: Props) => {
   };
 
   return (
-    <div className='list-footer'>
+    <div className='list-summary'>
       <div className='items-left'>
         <span>{todosLength} item left</span>
       </div>
@@ -55,4 +55,4 @@ const ListFooter = ({ onFilterClick, clearCompleted, todosLength }: Props) => {
   );
 };
 
-export default ListFooter;
+export default ListSummary;

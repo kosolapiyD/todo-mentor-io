@@ -1,10 +1,12 @@
 @use '../../styles/_colors.scss'as *;
 
-.list-footer {
-    display    : flex;
-    align-items: center;
-    height     : 50px;
-    font-weight: 600;
+.list-summary {
+    display                : flex;
+    align-items            : center;
+    height                 : 50px;
+    font-weight            : 600;
+    border-top-left-radius : 8px;
+    border-top-right-radius: 8px;
 
     .items-left {
         flex: 2;

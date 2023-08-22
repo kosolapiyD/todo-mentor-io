@@ -23,12 +23,11 @@
     }
 
     .todo-list {
-        background-color: $VeryLightGray;
-        box-shadow      : rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
         .todo-item {
-            border-bottom: 1px solid $LightGrayishBlue;
-            color        : $VeryDarkGrayishBlue;
+            border-top: 1px solid $LightGrayishBlue;
+            color     : $VeryDarkGrayishBlue;
 
             .todo-check {
                 input {
@@ -36,13 +35,23 @@
                 }
             }
         }
-    }
 
-    .list-footer {
-        color: $DarkGrayishBlue;
+        .list-summary {
+            color           : $DarkGrayishBlue;
+            background-color: $VeryLightGray;
+            box-shadow      : rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
-        .filter {
-            &[data-active="false"] {
+            .filter {
+                &[data-active="false"] {
+                    span {
+                        &:hover {
+                            color: $VeryDarkBlue;
+                        }
+                    }
+                }
+            }
+
+            .clear-completed {
                 span {
                     &:hover {
                         color: $VeryDarkBlue;
@@ -50,17 +59,11 @@
                 }
             }
         }
-
-        .clear-completed {
-            span {
-                &:hover {
-                    color: $VeryDarkBlue;
-                }
-            }
-        }
     }
 
-
+    .list-footer {
+        color: $DarkGrayishBlue;
+    }
 }
 
 [class*='dark-theme'] {
@@ -85,12 +88,11 @@
     }
 
     .todo-list {
-        background-color: $VeryDarkDesaturatedBlue;
-        box-shadow      : rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 
         .todo-item {
-            border-bottom: 1px solid $VeryDarkGrayishBlue;
-            color        : $LightGrayishBlue;
+            border-top: 1px solid $VeryDarkGrayishBlue;
+            color     : $LightGrayishBlue;
 
             .todo-check {
                 input {
@@ -98,13 +100,23 @@
                 }
             }
         }
-    }
 
-    .list-footer {
-        color: $DarkGrayishBlue;
+        .list-summary {
+            color           : $DarkGrayishBlue;
+            background-color: $VeryDarkDesaturatedBlue;
+            box-shadow      : rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 
-        .filter {
-            &[data-active="false"] {
+            .filter {
+                &[data-active="false"] {
+                    span {
+                        &:hover {
+                            color: $LightGrayishBlue;
+                        }
+                    }
+                }
+            }
+
+            .clear-completed {
                 span {
                     &:hover {
                         color: $LightGrayishBlue;
@@ -112,13 +124,9 @@
                 }
             }
         }
+    }
 
-        .clear-completed {
-            span {
-                &:hover {
-                    color: $LightGrayishBlue;
-                }
-            }
-        }
+    .list-footer {
+        color: $DarkGrayishBlue;
     }
 }
